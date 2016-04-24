@@ -1,0 +1,312 @@
+Help on TensorType in module theano.tensor.type object:
+
+class TTeennssoorrTTyyppee(theano.gof.type.Type)
+ |  Symbolic `Type` representing a numpy.ndarray value.
+ |  
+ |  Initialize self.dtype and self.broadcastable.
+ |  
+ |  Parameters
+ |  ----------
+ |  dtype: str
+ |      Corresponding to numpy dtype (e.g., 'int64')
+ |      The value (ndarray) associated to a `Variable` of this `Type` will
+ |      have this dtype.
+ |  broadcastable: tuple, list, or array of boolean values
+ |      This argument serves two purposes. First, the True elements of this
+ |      list indicate the dimensions where the shape of an associated value
+ |      must be 1. Secondly, the length of this list is the number of
+ |      dimensions that an associated value must have. See
+ |      doc:`broadcasting` for an explanation of how this list is used.
+ |  name : str
+ |      Optional name for this type.
+ |  
+ |  Method resolution order:
+ |      TensorType
+ |      theano.gof.type.Type
+ |      theano.gof.utils.object2
+ |      theano.gof.type.PureType
+ |      theano.gof.type.CLinkerType
+ |      theano.gof.op.CLinkerObject
+ |      __builtin__.object
+ |  
+ |  Methods defined here:
+ |  
+ |  ____eeqq____(self, other)
+ |      Compare True iff other is the same kind of TensorType.
+ |  
+ |  ____hhaasshh____(self)
+ |      Hash equal for same kinds of TensorType
+ |  
+ |  ____iinniitt____(self, dtype, broadcastable, name=None, sparse_grad=False)
+ |  
+ |  ____rreepprr____(self)
+ |  
+ |  ____ssttrr____(self)
+ |  
+ |  cc__cclleeaannuupp(self, name, sub)
+ |      Override `CLinkerType.c_cleanup`.
+ |  
+ |  cc__ccooddee__ccaacchhee__vveerrssiioonn(self)
+ |  
+ |  cc__ccoommppiillee__aarrggss(self, c_compiler)
+ |  
+ |  cc__ddeeccllaarree(self, name, sub, check_input=True)
+ |      Override `CLinkerType.c_declare`.
+ |  
+ |  cc__eexxttrraacctt(self, name, sub, check_input=True)
+ |      Override `CLinkerType.c_extract`.
+ |  
+ |  cc__hheeaaddeerrss(self, c_compiler)
+ |      Override `CLinkerObject.c_headers`.
+ |  
+ |  cc__iinniitt(self, name, sub)
+ |      Override `CLinkerType.c_init`.
+ |  
+ |  cc__iinniitt__ccooddee(self)
+ |  
+ |  cc__lliibbrraarriieess(self, c_compiler)
+ |  
+ |  cc__ssuuppppoorrtt__ccooddee(self)
+ |      Override `CLinkerObject.c_support_code`.
+ |  
+ |  cc__ssyynncc(self, name, sub)
+ |      Override `CLinkerType.c_sync`.
+ |  
+ |  cclloonnee(self, dtype=None, broadcastable=None)
+ |      Return a copy of the type optionally with a new dtype or
+ |      broadcastable pattern.
+ |  
+ |  ccoonnvveerrtt__vvaarriiaabbllee(self, var)
+ |  
+ |  ddttyyppee__ssppeeccss(self)
+ |      Return a tuple (python type, c type, numpy typenum) that corresponds
+ |      to self.dtype.
+ |      
+ |      This function is used internally as part of C code generation.
+ |  
+ |  ffiilltteerr(self, data, strict=False, allow_downcast=None)
+ |      Convert `data` to something which can be associated to a
+ |      `TensorVariable`.
+ |      
+ |      This function is not meant to be called in user code. It is for
+ |      `Linker` instances to use when running a compiled graph.
+ |  
+ |  ffiilltteerr__vvaarriiaabbllee(self, other, allow_convert=True)
+ |      Convert a symbolic Variable into a TensorType, if compatible.
+ |      
+ |      For the moment, only a TensorType or CudaNdarrayType will be
+ |      converted, provided they have the same number of dimensions,
+ |      broadcastable pattern, and dtype.
+ |  
+ |  ggeett__sshhaappee__iinnffoo(self, obj)
+ |      Return the information needed to compute the memory size of ``obj``.
+ |      
+ |      The memory size is only the data, so this excludes the container.
+ |      For an ndarray, this is the data, but not the ndarray object and
+ |      other data structures such as shape and strides.
+ |      
+ |      ``get_shape_info()`` and ``get_size()`` work in tandem for the memory
+ |      profiler.
+ |      
+ |      ``get_shape_info()`` is called during the execution of the function.
+ |      So it is better that it is not too slow.
+ |      
+ |      ``get_size()`` will be called on the output of this function
+ |      when printing the memory profile.
+ |      
+ |      Parameters
+ |      ----------
+ |      obj
+ |          The object that this Type represents during execution.
+ |      
+ |      Returns
+ |      -------
+ |      object
+ |          Python object that ``self.get_size()`` understands.
+ |  
+ |  ggeett__ssiizzee(self, shape_info)
+ |      Number of bytes taken by the object represented by shape_info.
+ |      
+ |      Parameters
+ |      ----------
+ |      shape_info
+ |          The output of the call to get_shape_info().
+ |      
+ |      Returns
+ |      -------
+ |      int
+ |          The number of bytes taken by the object described by ``shape_info``.
+ |  
+ |  mmaakkee__vvaarriiaabbllee(self, name=None)
+ |      Return a `TensorVariable` of this type.
+ |      
+ |      Parameters
+ |      ----------
+ |      name : str
+ |          A pretty name to identify this `Variable` when printing and
+ |          debugging
+ |  
+ |  ttoo__ssccaallaarr__ttyyppee(self)
+ |  
+ |  vvaalluuee__vvaalliiddiittyy__mmssgg(self, a)
+ |  
+ |  vvaalluuee__zzeerrooss(self, shape)
+ |      Create an numpy ndarray full of 0 values.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Static methods defined here:
+ |  
+ |  mmaayy__sshhaarree__mmeemmoorryy(a, b)
+ |  
+ |  vvaalluueess__eeqq(a, b, force_same_dtype=True)
+ |  
+ |  vvaalluueess__eeqq__aapppprrooxx(a, b, allow_remove_inf=False, allow_remove_nan=False, rtol=None, atol=None)
+ |      Parameters
+ |      ----------
+ |      allow_remove_inf
+ |          If True, when there is an inf in a, we allow any value in b in
+ |          that position. Event -inf
+ |      allow_remove_nan
+ |          If True, when there is a nan in a, we allow any value in b in
+ |          that position. Event +-inf
+ |      rtol
+ |          Relative tolerance, passed to _allclose.
+ |      atol
+ |          Absolute tolerance, passed to _allclose.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors defined here:
+ |  
+ |  nnddiimm
+ |      number of dimensions
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes defined here:
+ |  
+ |  CCoonnssttaanntt = <class 'theano.tensor.var.TensorConstant'>
+ |      Subclass to add the tensor operators to the basic `Constant` class.
+ |      
+ |      To create a TensorConstant, use the `constant` function in this module.
+ |  
+ |  VVaarriiaabbllee = <class 'theano.tensor.var.TensorVariable'>
+ |      Subclass to add the tensor operators to the basic `Variable` class.
+ |  
+ |  ffiilltteerr__cchheecckkss__iissffiinniittee = False
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors inherited from theano.gof.type.Type:
+ |  
+ |  ____ddiicctt____
+ |      dictionary for instance variables (if defined)
+ |  
+ |  ____wweeaakkrreeff____
+ |      list of weak references to the object (if defined)
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from theano.gof.utils.object2:
+ |  
+ |  ____nnee____(self, other)
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from theano.gof.type.PureType:
+ |  
+ |  ____ccaallll____(self, name=None)
+ |      Return a new `Variable` instance of Type `self`.
+ |      
+ |      Parameters
+ |      ----------
+ |      name : None or str
+ |          A pretty string for printing and debugging.
+ |  
+ |  iiss__vvaalliidd__vvaalluuee(self, a)
+ |      Required: Return True for any python object `a` that would be a
+ |      legal value for a Variable of this Type.
+ |  
+ |  mmaakkee__ccoonnssttaanntt(self, value, name=None)
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from theano.gof.type.CLinkerType:
+ |  
+ |  cc__eexxttrraacctt__oouutt(self, name, sub, check_input=True)
+ |      Optional: C code to extract a PyObject * instance.
+ |      
+ |      Unlike c_extract, c_extract_out has to accept Py_None,
+ |      meaning that the variable should be left uninitialized.
+ |  
+ |  cc__iiss__ssiimmppllee(self)
+ |      Optional: Return True for small or builtin C types.
+ |      
+ |      A hint to tell the compiler that this type is a builtin C type or a
+ |      small struct and that its memory footprint is negligible. Simple
+ |      objects may be passed on the stack.
+ |  
+ |  cc__lliitteerraall(self, data)
+ |      Optional: WRITEME
+ |      
+ |      Parameters
+ |      ----------
+ |      data : WRITEME
+ |          WRITEME
+ |      
+ |      Raises
+ |      ------
+ |      MethodNotDefined
+ |          Subclass does not implement this method.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from theano.gof.op.CLinkerObject:
+ |  
+ |  cc__hheeaaddeerr__ddiirrss(self)
+ |      Optional: Return a list of header search paths required by code
+ |      returned by this class.
+ |      
+ |      Examples
+ |      --------
+ |      return ['/usr/local/include', '/opt/weirdpath/src/include']
+ |      
+ |      Provides search paths for headers, in addition to those in any relevant
+ |      environment variables.
+ |      
+ |      Hint: for unix compilers, these are the things that get '-I' prefixed
+ |      in the compiler cmdline.
+ |      
+ |      Raises
+ |      ------
+ |      MethodNotDefined
+ |          Subclass does not implement this method.
+ |  
+ |  cc__lliibb__ddiirrss(self)
+ |      Optional: Return a list of library search paths required by code
+ |      returned by this class.
+ |      
+ |      Examples
+ |      --------
+ |      return ['/usr/local/lib', '/opt/weirdpath/build/libs'].
+ |      
+ |      Provides search paths for libraries, in addition to those in any
+ |      relevant environment variables (e.g. LD_LIBRARY_PATH).
+ |      
+ |      Hint: for unix compilers, these are the things that get '-L' prefixed
+ |      in the compiler cmdline.
+ |      
+ |      Raises
+ |      ------
+ |      MethodNotDefined
+ |          Subclass does not implement this method.
+ |  
+ |  cc__nnoo__ccoommppiillee__aarrggss(self)
+ |      Optional: return a list of incompatible gcc compiler arguments.
+ |      
+ |      We will remove those arguments from the command line of gcc. So if
+ |      another Op adds a compile arg in the graph that is incompatible
+ |      with this Op, the incompatible arg will not be used.
+ |      Useful for instance to remove -ffast-math.
+ |      
+ |      EXAMPLE
+ |      
+ |      WRITEME
+ |      
+ |      Raises
+ |      ------
+ |      MethodNotDefined
+ |          The subclass does not override this method.
